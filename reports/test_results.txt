@@ -1,0 +1,37 @@
+.............................................                            [100%]
+=============================== warnings summary ===============================
+../.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/scratch/c1dc5c4fccbf/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.14-final-0 _______________
+
+Name                                 Stmts   Miss  Cover   Missing
+------------------------------------------------------------------
+src/shieldgate/__init__.py               1      0   100%
+src/shieldgate/agent.py                 84      1    99%   96
+src/shieldgate/api.py                  122      2    98%   150, 164
+src/shieldgate/audit.py                 49      0   100%
+src/shieldgate/detect.py                31      0   100%
+src/shieldgate/gateway.py               84      0   100%
+src/shieldgate/isolate.py               18      0   100%
+src/shieldgate/models/__init__.py        0      0   100%
+src/shieldgate/models/base.py            3      0   100%
+src/shieldgate/models/mock.py           69      4    94%   36-37, 69, 100
+src/shieldgate/output_guard.py          49      0   100%
+src/shieldgate/permissions.py           34      1    97%   83
+src/shieldgate/policy.py                53      1    98%   61
+src/shieldgate/sanitize.py              84      0   100%
+src/shieldgate/tools/__init__.py         0      0   100%
+src/shieldgate/tools/mock_tools.py      38      1    97%   45
+src/shieldgate/tools/registry.py        22      0   100%
+src/shieldgate/trust.py                 14      0   100%
+src/shieldgate/types.py                 71      0   100%
+src/shieldgate/validate.py              64      4    94%   50, 76-77, 82
+------------------------------------------------------------------
+TOTAL                                  890     14    98%
+Coverage JSON written to file reports/coverage.json
+Required test coverage of 85.0% reached. Total coverage: 98.43%
+45 passed, 1 warning in 8.32s

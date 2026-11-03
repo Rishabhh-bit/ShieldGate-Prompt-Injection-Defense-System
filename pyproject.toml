@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shieldgate"
+version = "1.0.0"
+description = "Offline prompt-injection defense workbench and deterministic policy gateway"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.10,<3", "PyYAML>=6,<7", "jsonschema>=4.23,<5", "fastapi>=0.115,<1", "uvicorn>=0.30,<1", "typer>=0.12,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "httpx>=0.27,<1", "ruff>=0.11", "mypy>=1.15", "types-PyYAML", "types-jsonschema"]
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["shieldgate*", "redteam*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = [".venv_verify"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+mypy_path = "src"
+
+[tool.coverage.run]
+source = ["shieldgate"]
+
+[tool.coverage.report]
+fail_under = 85
+show_missing = true
+
+[tool.pyrefly]
+python-interpreter-path = ".venv/bin/python"
+search-path = ["src", "."]
+site-package-path = [".venv/lib/python3.14/site-packages"]
+

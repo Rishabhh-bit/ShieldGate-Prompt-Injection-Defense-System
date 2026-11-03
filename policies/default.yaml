@@ -1,0 +1,31 @@
+version: 1
+default_action: block
+sandbox_dir: ./sandbox
+roles:
+  assistant_readonly:
+    allow_tools: [read_inbox, read_file, search_web, write_note]
+  assistant_standard:
+    allow_tools: [read_inbox, read_file, search_web, write_note, http_get, send_email]
+tools:
+  read_inbox: {risk: low}
+  read_file: {risk: low}
+  search_web: {risk: low}
+  write_note: {risk: medium, require_human_approval_if_tainted: true}
+  http_get:
+    risk: medium
+    domain_allowlist: [wikipedia.org, docs.python.org]
+  send_email:
+    risk: high
+    recipient_domains_allowlist: [company.com]
+    max_recipients: 3
+    require_human_approval_if_tainted: true
+  delete_file: {risk: high, require_human_approval: always}
+  run_shell: {risk: high, enabled: false}
+taint:
+  high_risk_tools: escalate
+  egress_tools: escalate
+  hostile_content_present: block
+limits:
+  max_tool_calls_per_session: 20
+output_domains: [docs.python.org, wikipedia.org]
+redact_pii: false
